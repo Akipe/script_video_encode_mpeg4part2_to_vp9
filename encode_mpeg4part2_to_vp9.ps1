@@ -55,7 +55,7 @@ Function Use-EncodeToVP9([io.fileinfo] $File, $FileNumber)
         "-nostdin " +
         "-init_hw_device qsv=hw " +
         "-filter_hw_device hw " +
-        "-i '" + $File.FullName + "' " +
+        '-i "' + $File.FullName + '" ' +
         "-c:a libopus " +
         "-b:a $ENCODER_AUDIO_RATE " +
         "-vf 'hwupload=extra_hw_frames=64,format=qsv' " +
@@ -66,9 +66,9 @@ Function Use-EncodeToVP9([io.fileinfo] $File, $FileNumber)
         "-minrate $ENCODER_VIDEO_MINIMUM_RATE " +
         "-maxrate $ENCODER_VIDEO_MAXIMUM_RATE " +
         "-preset veryslow " +
-        "'" +
+        '"' +
         ((Get-FullNameWithoutExtension $File) + '.webm') +
-        "'"
+        '"'
     
     Write-LogMessage ("[$FileNumber] Encoding command : " + $EncodingCommand)
     Invoke-Expression $EncodingCommand
